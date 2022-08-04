@@ -70,8 +70,9 @@ class Timer {
       const deltaTime = selectedTime - currentTime;
       const componentsTimer = convertMs(deltaTime);
       this.updateComponentsTimer(componentsTimer);
-      if (deltaTime <= 0) {
-        this.stopTimer();
+      if (refs.days.textContent === "00" && refs.hours.textContent === "00" && refs.minutes.textContent === "00" && refs.seconds.textContent === "00") {
+        clearInterval(this.timerID);
+        return;
       }
     }, 1000);
   }
@@ -81,10 +82,6 @@ class Timer {
     refs.hours.textContent = hours;
     refs.minutes.textContent = minutes;
     refs.seconds.textContent = seconds;
-  }
-
-  stopTimer() {
-    clearInterval(this.timerID);
   }
 }
 
